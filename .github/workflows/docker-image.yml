@@ -38,10 +38,10 @@ jobs:
           push: true
           tags: gounthar/gitlab-runner:15.0.0-alpine-arm
       -
-        name: Build and push Ubuntu
+        name: Build and push Ubuntu 15.0.0
         uses: docker/build-push-action@v3
         with:
-          context: dockerfiles/15.0.0-arm
+          context: dockerfiles/ubuntu
           platforms: linux/arm/v7
           push: true
-          tags: gounthar/gitlab-runner:ubuntu
+          tags: gounthar/gitlab-runner:15.0.0-arm
