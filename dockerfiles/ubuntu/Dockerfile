@@ -1,13 +1,15 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
 LABEL maintainer "Pierre Ugaz <ulm0@innersea.xyz>"
-ARG RUNNER_VERSION
+ARG RUNNER_VERSION=15.0.0
 ARG DOCKER_MACHINE_VERSION=0.16.2
 ENV DEBIAN_FRONTEND=noninteractive
 COPY entrypoint /
 RUN apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y ca-certificates wget apt-transport-https curl git vim nano tzdata git-lfs dumb-init && \
-    wget -q "https://packages.gitlab.com/runner/gitlab-runner/packages/ubuntu/bionic/gitlab-runner_${RUNNER_VERSION}_armhf.deb/download" -O /tmp/gitlab-runner_armhf.deb && \
+    UBUNTU_VERSION_NAME=$(sed -rn 's|^deb\s+\S+\s+(\w+)\s+main.*$|\1|p' /etc/apt/sources.list | head -n 1 | tr -d '()') && \
+    echo "https://packages.gitlab.com/runner/gitlab-runner/packages/ubuntu/$UBUNTU_VERSION_NAME/gitlab-runner_${RUNNER_VERSION}_armhf.deb/download" && \
+    wget -q "https://packages.gitlab.com/runner/gitlab-runner/packages/ubuntu/$UBUNTU_VERSION_NAME/gitlab-runner_${RUNNER_VERSION}_armhf.deb/download" -O /tmp/gitlab-runner_armhf.deb && \
     dpkg -i /tmp/gitlab-runner_armhf.deb; \
     apt-get update &&  \
     apt-get -f install -y && \
