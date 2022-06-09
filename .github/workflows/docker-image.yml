@@ -3,9 +3,9 @@ name: docker image building and pushing
 on:
   push:
     branches:
-      - 'master'
+      - '15.0.0'
   pull_request:
-    branches: [ master ]
+    branches: [ 15.0.0 ]
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '30 5,17 * * *'
@@ -36,20 +36,12 @@ jobs:
           context: dockerfiles/alpine
           platforms: linux/arm/v7,linux/arm/v6
           push: true
-          tags: gounthar/gitlab-runner:alpine-arm
-      -
-        name: Build and push latest
-        uses: docker/build-push-action@v3
-        with:
-          context: dockerfiles/alpine
-          platforms: linux/arm/v7,linux/arm/v6
-          push: true
-          tags: gounthar/gitlab-runner
+          tags: gounthar/gitlab-runner:15.0.0-alpine-arm
       -
         name: Build and push Ubuntu
         uses: docker/build-push-action@v3
         with:
-          context: dockerfiles/ubuntu
+          context: dockerfiles/15.0.0-arm
           platforms: linux/arm/v7
           push: true
           tags: gounthar/gitlab-runner:ubuntu
