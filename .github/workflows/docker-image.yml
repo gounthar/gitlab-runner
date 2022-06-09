@@ -3,9 +3,9 @@ name: docker image building and pushing
 on:
   push:
     branches:
-      - 'gounthar-patch-1'
+      - 'master'
   pull_request:
-    branches: [ gounthar-patch-1 ]
+    branches: [ master ]
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '30 5,17 * * *'
