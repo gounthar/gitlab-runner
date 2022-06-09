@@ -57,7 +57,7 @@ jobs:
         name: Build and push latest arm
         uses: docker/build-push-action@v3
         with:
-          context: dockerfiles/15.0.0-arm
+          context: dockerfiles/ubuntu
           platforms: linux/arm/v7
           push: true
           tags: gounthar/gitlab-runner:latest-arm
