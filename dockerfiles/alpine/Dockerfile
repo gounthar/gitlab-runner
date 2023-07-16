@@ -1,4 +1,4 @@
-nFROM alpine:latest
+FROM alpine:latest
 LABEL maintainer "Bruno Veracht"
 ARG RUNNER_VERSION
 ARG DOCKER_MACHINE_VERSION=0.16.2
