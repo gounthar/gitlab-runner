@@ -1,5 +1,5 @@
-FROM alpine:latest
-LABEL maintainer "Pierre Ugaz <ulm0@innersea.xyz>"
+nFROM alpine:latest
+LABEL maintainer "Bruno Veracht"
 ARG RUNNER_VERSION
 ARG DOCKER_MACHINE_VERSION=0.16.2
 COPY entrypoint /
